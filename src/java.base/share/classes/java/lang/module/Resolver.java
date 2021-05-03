@@ -325,8 +325,8 @@ final class Resolver {
 
         if (mref instanceof ModuleReferenceImpl) {
             ModuleTarget target = ((ModuleReferenceImpl)mref).moduleTarget();
-            if (target != null)
-                checkTargetPlatform(mn, target);
+//            if (target != null)
+//                checkTargetPlatform(mn, target);
         }
 
         nameToReference.put(mn, mref);
