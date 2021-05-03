@@ -271,6 +271,7 @@ address TemplateInterpreterGenerator::generate_deopt_entry_for(TosState state, i
     __ bind(L);
   } else {
 #ifdef ASSERT
+#ifdef _LP64
     if (EnableJVMCI) {
       Label L;
       __ cmpb(Address(r15_thread, JavaThread::pending_monitorenter_offset()), 0);
@@ -278,6 +279,7 @@ address TemplateInterpreterGenerator::generate_deopt_entry_for(TosState state, i
       __ stop("unexpected pending monitor in deopt entry");
       __ bind(L);
     }
+#endif
 #endif
   }
 #endif
