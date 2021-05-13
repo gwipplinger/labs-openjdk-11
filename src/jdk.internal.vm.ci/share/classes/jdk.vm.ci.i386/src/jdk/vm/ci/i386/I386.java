@@ -150,7 +150,7 @@ public class I386 extends Architecture {
     private final I386Kind largestKind;
 
     public I386(EnumSet<CPUFeature> features, EnumSet<Flag> flags) {
-        super("I386", I386Kind.QWORD, ByteOrder.LITTLE_ENDIAN, true, allRegisters, LOAD_LOAD | LOAD_STORE | STORE_STORE, 1, 4);
+        super("I386", I386Kind.DWORD, ByteOrder.LITTLE_ENDIAN, true, allRegisters, LOAD_LOAD | LOAD_STORE | STORE_STORE, 1, 4);
         this.features = features;
         this.flags = flags;
         assert features.contains(CPUFeature.SSE2) : "minimum config for i386";
