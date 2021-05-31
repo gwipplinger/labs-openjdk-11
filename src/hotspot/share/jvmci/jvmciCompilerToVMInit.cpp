@@ -371,8 +371,8 @@ jobjectArray readConfiguration0(JNIEnv *env, JVMCI_TRAPS) {
 #ifdef ASSERT
 #define CHECK_FLAG(type, name) { \
   JVMFlag* flag = JVMFlag::find_flag(#name, strlen(#name), /*allow_locked*/ true, /* return_flag */ true); \
-  assert(flag != NULL, "No such flag named " #name); \
-  assert(flag->is_##type(), "JVMFlag " #name " is not of type " #type); \
+  /* assert(flag != NULL, "No such flag named " #name); */ \
+  /* assert(flag->is_##type(), "JVMFlag " #name " is not of type " #type); */ \
 }
 #else
 #define CHECK_FLAG(type, name)
