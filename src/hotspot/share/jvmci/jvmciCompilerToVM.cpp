@@ -1473,7 +1473,7 @@ C2V_VMENTRY_0(jboolean, shouldDebugNonSafepoints, (JNIEnv* env, jobject))
 C2V_END
 
 // public native void materializeVirtualObjects(HotSpotStackFrameReference stackFrame, boolean invalidate);
-C2V_VMENTRY(void, materializeVirtualObjects, (JNIEnv* env, jobject, jobject _hs_frame, bool invalidate))
+C2V_VMENTRY(void, materializeVirtualObjects, (JNIEnv* env, jobject, jobject _hs_frame, jboolean invalidate))
   JVMCIObject hs_frame = JVMCIENV->wrap(_hs_frame);
   if (hs_frame.is_null()) {
     JVMCI_THROW_MSG(NullPointerException, "stack frame is null");
@@ -1596,7 +1596,7 @@ C2V_END
 
 // Use of tty does not require the current thread to be attached to the VM
 // so no need for a full C2V_VMENTRY transition.
-C2V_VMENTRY_PREFIX(void, writeDebugOutput, (JNIEnv* env, jobject, jlong buffer, jint length, bool flush))
+C2V_VMENTRY_PREFIX(void, writeDebugOutput, (JNIEnv* env, jobject, jlong buffer, jint length, jboolean flush))
   if (length <= 8) {
     tty->write((char*) &buffer, length);
   } else {
@@ -1911,7 +1911,8 @@ C2V_VMENTRY_NULL(jobjectArray, getDeclaredMethods, (JNIEnv* env, jobject, jobjec
   return JVMCIENV->get_jobjectArray(methods);
 C2V_END
 
-C2V_VMENTRY_NULL(jobject, readFieldValue, (JNIEnv* env, jobject, jobject object, jobject expected_type, long displacement, jboolean is_volatile, jobject kind_object))
+C2V_VMENTRY_NULL(jobject, readFieldValue, (JNIEnv* env, jobject, jobject object, jobject expected_type, jlong displacement, jboolean is_volatile, jobject kind_object))
+
   if (object == NULL || kind_object == NULL) {
     JVMCI_THROW_0(NullPointerException);
   }
@@ -2136,7 +2137,7 @@ C2V_VMENTRY_0(jint, getArrayLength, (JNIEnv* env, jobject, jobject x))
  C2V_END
 
 
-C2V_VMENTRY_NULL(jobject, readArrayElement, (JNIEnv* env, jobject, jobject x, int index))
+C2V_VMENTRY_NULL(jobject, readArrayElement, (JNIEnv* env, jobject, jobject x, jint index))
   if (x == NULL) {
     JVMCI_THROW_0(NullPointerException);
   }
